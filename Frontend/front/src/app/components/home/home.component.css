@@ -1,0 +1,13 @@
+.jumbotron {
+    
+    background-color: rgb(52, 143, 91);
+    background: linear-gradient();   
+    
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: 75%;
+    border-radius: 3rem;
+}

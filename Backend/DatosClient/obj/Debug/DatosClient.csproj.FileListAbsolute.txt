@@ -1,0 +1,10 @@
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\bin\Debug\DatosClient.dll.config
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\bin\Debug\DatosClient.dll
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\bin\Debug\DatosClient.pdb
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\bin\Debug\EntityFramework.dll
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\bin\Debug\EntityFramework.xml
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\obj\Debug\DatosClient.csprojAssemblyReference.cache
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\obj\Debug\DatosClient.csproj.CoreCompileInputs.cache
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\obj\Debug\DatosClient.csproj.CopyComplete
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\obj\Debug\DatosClient.dll
+C:\Users\priip\OneDrive\Escritorio\Proyecto\Back\DatosClient\obj\Debug\DatosClient.pdb

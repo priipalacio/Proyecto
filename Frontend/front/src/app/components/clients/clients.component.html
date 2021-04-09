@@ -1,0 +1,164 @@
+<div class="container ">
+    <div class="card text-center" id="cp">
+        <h1 class="text-center text-light">{{Title}}</h1>
+        <h3 class="text-center text-light">{{TitleAccion[Accion]}}</h3>
+    </div>
+
+
+<!-- list clients-->
+<div id="table" class="col-sm-12" *ngIf="Accion == 'L' ">
+
+    <table class="table table-bordered table-striped table-hover ">
+        <thead class=" thead-dark">
+            <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Dni</th>
+                <th class="text-center">Direccion</th>
+                <th class="text-center">Provincia</th>
+                <th class="text-center">Localidad</th>
+                <th class="text-center">Telefono</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let cl of clients">
+                <td class="text-left table-light">{{cl.NameCl}}</td>
+                <td class="text-left table-light">{{cl.Dni}}</td>
+                <td class="text-left table-light">{{cl.Adress}}</td>
+                <td class="text-left table-light">{{cl.NameProv}}</td>
+                <td class="text-left table-light">{{cl.City}}</td>
+                <td class="text-left table-light">{{cl.Telephone}}</td>
+                <td class="text-center text-nowrap">
+                    <button type="button" class="btn btn-sm btn-primary" title="Modificar" (click)="Edit(cl)">
+                        <span class="fas fa-pencil-alt"></span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning ml-1" title="Ver" (click)="Delete(cl)">
+                        <span class="fas fa-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row justify-content-center">
+                    <div class="card text-center " id="cp">
+                        <button type="button" class="btn btn-primary btn-lg" (click)="Add()">Agregar nuevo cliente</button>
+                    </div>
+                    <div class="card text-center " id="cp">
+                        <a class="btn btn-warning btn-lg ml-2" routerLink="/home" >Volver
+                            <span class="fas fa-undo"></span>
+                        </a>
+                    </div>
+    </div>
+
+
+</div>
+
+<!--no clients-->
+<div id="msj" class="alert alert-info" *ngIf="Accion == 'L' && !Notresult ">
+    <span class="fas fa-exclamation-sign"></span>{{Msj['SD']}}
+    <!-- texto: No se encontraron registros -->
+</div>
+
+
+
+<!--form create-->
+
+<div class="row mt-2">
+    <div class="col">
+        <form name="FormReg" [formGroup]='FormReg' *ngIf="Accion != 'L'">
+            <!--name-->
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                </span>
+                <input formControlName="idClient" type="hidden" class="form-control" >
+                <input formControlName="NameCl" type="text" class="form-control" placeholder="Nombre" [ngClass]="{'is-invalid': (FormReg.controls.NameCl.touched ||submitted && FormReg.controls.NameCl.errors)}">
+                <span class="text-danger" *ngIf="(FormReg.controls.NameCl.touched || submitted) && FormReg.controls.NameCl.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="
+                FormReg.controls.NameCl.errors?.minlength || FormReg.controls.NameCl.errors?.maxlength ">
+             Dato texto, 3 a 50 caracteres.
+                </span>
+            </div>
+            <!--dni-->
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="far fa-address-card"></i>
+                </span>
+                <input formControlName="Dni" type="text" class="form-control" placeholder="Dni"[ngClass]="{'is-invalid': (FormReg.controls.Dni.touched ||submitted && FormReg.controls.Dni.errors)}">
+                <span class="text-danger" *ngIf="(FormReg.controls.Dni.touched || submitted) && FormReg.controls.Dni.errors?.required">
+                    Dato requerido.
+                </span>
+            </div>
+            <!--adress-->
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fas fa-map-marker-alt"></i>
+                </span>
+                <input formControlName="Adress" type="text" class="form-control" placeholder="Domicilio"[ngClass]="{'is-invalid': (FormReg.controls.Adress.touched ||submitted && FormReg.controls.Adress.errors)}">
+                <span class="text-danger" *ngIf="(FormReg.controls.Adress.touched || submitted) && FormReg.controls.Adress.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="FormReg.controls.Adress.errors?.maxlength">
+                    Maximo permitido de 50 caracteres
+                </span>
+            </div>
+            <!--prov-->
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fas fa-map-marker-alt"></i>
+                </span>
+                <select name="selectP" class="form-control" [(ngModel)]="provincia.provincias[0].nombre"  formControlName="NameProv" id="SP"  >
+                    <option *ngFor="let prov of provincia.provincias" [ngValue]="prov.nombre" >{{prov.nombre}}</option>
+                </select>
+                <span class="text-danger" *ngIf="(FormReg.controls.NameProv.touched || submitted) && FormReg.controls.NameProv.errors?.required">
+                    Dato requerido.
+                </span>
+            </div>  
+            <!--city-->  
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fas fa-map-marker-alt"></i>
+                </span>
+                    <select name="id" class="form-control" formControlName="City">                     
+                        <option *ngFor="let mun of city.localidades" [ngValue]="mun.nombre">{{mun.nombre}}</option>
+                    </select>
+                    <span class="text-danger" *ngIf="(FormReg.controls.City.touched || submitted) && FormReg.controls.City.errors?.required">
+                        Dato requerido.
+                    </span>
+            </div>  
+            <!--telephone-->              
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fas fa-mobile-alt"></i>
+                </span>
+                <input formControlName="Telephone" type="text" class="form-control" placeholder="Telefono"[ngClass]="{'is-invalid': (FormReg.controls.Telephone.touched || submitted)  
+                && FormReg.controls.Telephone.errors}">
+                <span class="text-danger" *ngIf="(FormReg.controls.Telephone.touched || submitted) && FormReg.controls.Telephone.errors?.required">
+                    Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="FormReg.controls.Telephone.errors?.pattern">
+                    Dato numérico, 1 a 10 dígitos.
+                </span>
+            </div>
+
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="Save()" *ngIf="Accion == 'A' || Accion == 'M'">
+                <span class="fas fa-check"></span> Guardar
+            </button>
+            <button type="button" class="btn btn-warning ml-2" (click)="Back()">
+                <span class="fas fa-undo"></span> {{Accion == 'A' || Accion == 'M' ? 'Cancelar': 'Volver'}}
+            </button>
+        </div>
+
+        <!--error msj-->
+
+        <div id="msj" class="row alert alert-danger" *ngIf=" submitted && FormReg.invalid">
+            <span class="fas fa-exclamation-sign"></span>{{Msj['RD']}}
+        </div>
+        </form>
+    </div>
+</div>
+
+</div>
